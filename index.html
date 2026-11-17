@@ -51,7 +51,7 @@ input,select,textarea{width:100%;padding:12px;border:1px solid var(--ln);border-
     <textarea id="s" rows="3" placeholder="مثال: ألم في أسفل الظهر"></textarea>
     <div class="err" id="e"></div>
     <div id="fb" style="display:none;text-align:center;margin-top:10px"></div>
-    <a class="go" id="b" target="_blank" rel="noopener" href="#">إرسال الحجز عبر واتساب</a>
+    <a class="go" id="b" href="https://api.whatsapp.com/send?phone=201503780045">إرسال الحجز عبر واتساب</a>
     <div class="note">هتتحول لواتساب المركز، وهنأكد معاك الميعاد.</div>
   </div>
 </main>
@@ -66,8 +66,9 @@ document.getElementById("b").onclick=function(ev){
   if(!n||!p||!sel.sv||!d||!sel.tm){ev.preventDefault();e.textContent="من فضلك املا الاسم والموبايل والخدمة واليوم والساعة.";return}
   e.textContent="";
   var m="طلب حجز جديد - مركز ريفيتا كير\nالاسم: "+n+"\nالموبايل: "+p+"\nالخدمة: "+sel.sv+"\nاليوم: "+d+"\nالساعة: "+sel.tm+"\nسبب الزيارة: "+(s||"-");
-  var u="https://wa.me/201503780045?text="+encodeURIComponent(m);this.href=u;
-var fb=document.getElementById("fb");fb.innerHTML='<a href="'+u+'" target="_blank" rel="noopener" style="display:block;padding:14px;border-radius:12px;background:#25d366;color:#fff;font-weight:700;text-decoration:none;font-size:16px">اضغط هنا لفتح واتساب وإرسال الحجز</a>';fb.style.display="block";
+  var u="https://api.whatsapp.com/send?phone=201503780045&text="+encodeURIComponent(m);this.href=u;ev.preventDefault();
+  var fb=document.getElementById("fb");fb.innerHTML='<a href="'+u+'" style="display:block;padding:14px;border-radius:12px;background:#25d366;color:#fff;font-weight:700;text-decoration:none;font-size:16px">لو واتساب مفتحش، اضغط هنا</a><div style="font-size:13px;margin-top:8px">أو اتصل بينا: <a href="tel:+201503780045" style="color:inherit;font-weight:700">01503780045</a></div>';fb.style.display="block";
+  window.location.href=u;
 };
 </script>
 </body>
