@@ -59,7 +59,7 @@ input,select,textarea{width:100%;padding:12px;border:1px solid var(--ln);border-
 var S=["علاج طبيعي","تأهيل إصابات","علاج آلام الظهر والرقبة","جلسة أخرى"],T=["1:00 ظهراً","2:00 ظهراً","3:00 عصراً","4:00 عصراً","5:00 مساءً","6:00 مساءً","7:00 مساءً","8:00 مساءً"],sel={sv:"",tm:""};
 function chips(id,arr){var el=document.getElementById(id);arr.forEach(function(x){var c=document.createElement("div");c.className="chip";c.textContent=x;c.onclick=function(){el.querySelectorAll(".chip").forEach(function(y){y.classList.remove("on")});c.classList.add("on");sel[id]=x};el.appendChild(c)})}
 chips("sv",S);chips("tm",T);
-var dEl=document.getElementById("d");dEl.min=new Date().toISOString().slice(0,10);
+var dEl=document.getElementById("d");var _t=new Date();dEl.min=_t.getFullYear()+"-"+String(_t.getMonth()+1).padStart(2,"0")+"-"+String(_t.getDate()).padStart(2,"0");
 dEl.onchange=function(){if(dEl.value&&new Date(dEl.value+"T12:00:00").getDay()===5){dEl.value="";document.getElementById("e").textContent="المركز مقفول يوم الجمعة، من فضلك اختار يوم تاني."}else{document.getElementById("e").textContent=""}};
 document.getElementById("b").onclick=function(ev){
   var n=document.getElementById("n").value.trim(),p=document.getElementById("p").value.trim(),d=document.getElementById("d").value,s=document.getElementById("s").value.trim(),e=document.getElementById("e");
@@ -67,7 +67,7 @@ document.getElementById("b").onclick=function(ev){
   e.textContent="";
   var m="طلب حجز جديد - مركز ريفيتا كير\nالاسم: "+n+"\nالموبايل: "+p+"\nالخدمة: "+sel.sv+"\nاليوم: "+d+"\nالساعة: "+sel.tm+"\nسبب الزيارة: "+(s||"-");
   var u="https://wa.me/201503780045?text="+encodeURIComponent(m);this.href=u;
-var fb=document.getElementById("fb");fb.innerHTML='<a href="'+u+'" target="_blank" rel="noopener" style="display:block;padding:14px;border-radius:12px;background:#25d366;color:#fff;font-weight:700;text-decoration:none;font-size:16px">اضغط هنا لفتح واتساب وإرسال الحجز</a>';
+var fb=document.getElementById("fb");fb.innerHTML='<a href="'+u+'" target="_blank" rel="noopener" style="display:block;padding:14px;border-radius:12px;background:#25d366;color:#fff;font-weight:700;text-decoration:none;font-size:16px">اضغط هنا لفتح واتساب وإرسال الحجز</a>';fb.style.display="block";
 };
 </script>
 </body>
